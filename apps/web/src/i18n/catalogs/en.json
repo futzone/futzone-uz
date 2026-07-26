@@ -1,0 +1,398 @@
+{
+  "auth": {
+    "pageTitle": "Log in or register",
+    "phoneTitle": "Welcome to Futzone",
+    "otpTitle": "Enter the verification code",
+    "registrationTitle": "Create your player profile",
+    "login": "Log in",
+    "register": "Register",
+    "logout": "Log out",
+    "phone": "Phone number",
+    "phonePlaceholder": "+998 90 123 45 67",
+    "phoneInvalid": "Enter a valid Uzbekistan phone number.",
+    "privacy": "We use your number only to secure your account. It is never public.",
+    "sendCode": "Send code",
+    "codeSent": "Enter the six-digit code sent to your phone.",
+    "code": "Verification code",
+    "codeInvalid": "Enter all six digits.",
+    "verify": "Verify",
+    "resend": "Send a new code",
+    "resendIn": "Send again in {seconds}s",
+    "usernameAvailable": "This username is available.",
+    "completeRegistration": "Create profile",
+    "useLocation": "Use my location",
+    "locationUnavailable": "Location is not available in this browser.",
+    "locationDenied": "Location access was not granted. Choose your city manually.",
+    "locationNoMatch": "We could not match your location to a city. Choose one manually."
+  },
+  "profile": {
+    "metadataTitle": "{name} — Futzone player",
+    "metadataDescription": "View {name} (@{username}) on Futzone.",
+    "settingsTitle": "Profile settings",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "username": "Username",
+    "usernameInvalid": "Use 3–20 lowercase letters, numbers, or underscores.",
+    "usernameChangeDate": "You can change your username again on {date}.",
+    "phone": "Phone number",
+    "bio": "About me",
+    "city": "City",
+    "position": "Position",
+    "locale": "Preferred language",
+    "notSet": "Not set",
+    "avatar": "Profile photo",
+    "avatarPreview": "Profile photo preview",
+    "avatarInvalid": "Choose a JPEG, PNG, or WebP image no larger than 5 MB.",
+    "uploadAvatar": "Upload photo",
+    "uploadProgress": "Upload progress",
+    "avatarProcessing": "Photo uploaded. Processing will finish shortly.",
+    "save": "Save changes",
+    "saved": "Your changes were saved.",
+    "verified": "Verified",
+    "newPlayer": "New player",
+    "joined": "Joined",
+    "badges": "Badges",
+    "attendanceBreakdown": "Attendance breakdown",
+    "recentMatches": "Recent matches",
+    "noRecentMatches": "No recent public matches.",
+    "ownHint": "You still have {count} teammate ratings to give. Open a recent match to finish them.",
+    "attendance": {
+      "onTime": "On time",
+      "late": "Late",
+      "noShow": "No-show",
+      "cancelledEarly": "Cancelled early"
+    },
+    "comments": {
+      "title": "Player comments",
+      "empty": "No public comments yet.",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "report": {
+      "button": "Report",
+      "reason": "Report reason",
+      "submit": "Send",
+      "sent": "Report sent for moderation.",
+      "failed": "The report could not be sent."
+    },
+    "badgeCatalog": {
+      "RELIABLE_PLAYER": {
+        "name": "Reliable player",
+        "description": "At least 90% attendance across 10 or more matches."
+      },
+      "TEN_MATCHES": {
+        "name": "10 matches",
+        "description": "Played 10 matches on Futzone."
+      },
+      "FIFTY_MATCHES": {
+        "name": "50 matches",
+        "description": "Played 50 matches on Futzone."
+      },
+      "PERFECT_ATTENDANCE": {
+        "name": "Perfect attendance",
+        "description": "No no-shows across at least 15 matches."
+      },
+      "TRUSTED_ORGANIZER": {
+        "name": "Trusted organizer",
+        "description": "Organized at least 10 matches with fewer than 10% cancelled."
+      },
+      "FAIR_PLAY": {
+        "name": "Fair play",
+        "description": "A fair-play average of at least 4.5 across 10 or more ratings."
+      }
+    },
+    "stats": {
+      "matchesPlayed": "Matches",
+      "matchesOrganized": "Organized",
+      "attendance": "Attendance",
+      "bayesAvg": "Rating",
+      "ratingCount": "{count} ratings"
+    }
+  },
+  "attendance": {
+    "title": "Mark attendance",
+    "guestNoShows": "Guest no-shows",
+    "saved": "Attendance saved.",
+    "failed": "Attendance could not be saved.",
+    "status": {
+      "ON_TIME": "On time",
+      "LATE": "Late",
+      "NO_SHOW": "No-show",
+      "CANCELLED_EARLY": "Cancelled early",
+      "EXCUSED": "Excused",
+      "REMOVED_BY_OWNER": "Removed by organizer"
+    }
+  },
+  "ratings": {
+    "title": "Rate your teammates",
+    "teammate": "Teammate",
+    "criteria": {
+      "discipline": "Discipline",
+      "punctuality": "Punctuality",
+      "fairPlay": "Fair play",
+      "teamPlay": "Team play",
+      "overall": "Overall"
+    },
+    "comment": "Optional public comment",
+    "submit": "Submit rating",
+    "saved": "Rating submitted.",
+    "failed": "Rating could not be submitted.",
+    "validation": "Choose a score from 1 to 5 for every criterion and keep the comment within 500 characters.",
+    "complete": "You have rated every eligible teammate.",
+    "windowClosed": "The seven-day rating window has closed."
+  },
+  "dispute": {
+    "title": "Dispute attendance",
+    "description": "Explain what should be corrected. Disputes are accepted within 72 hours of attendance being marked.",
+    "note": "Dispute note",
+    "submit": "Submit dispute",
+    "sent": "Your dispute was submitted.",
+    "failed": "The dispute could not be submitted.",
+    "closed": "The 72-hour dispute window has closed."
+  },
+  "matches": {
+    "occupancy": "Players",
+    "guests": "+{count} with {username}",
+    "map": {
+      "label": "Match location map",
+      "instructions": "Click the map to place the pin, or enter coordinates manually.",
+      "fallback": "The interactive map is unavailable. Enter the address and coordinates manually."
+    },
+    "wizard": {
+      "metadata": "Create a match",
+      "progress": "Match creation progress",
+      "loadError": "Could not load the required data.",
+      "validation": "Complete the required fields before continuing.",
+      "steps": {
+        "basics": "Match basics",
+        "venue": "When and where",
+        "money": "Price",
+        "rules": "Rules",
+        "review": "Review your match"
+      },
+      "title": "Title",
+      "format": "Format",
+      "slots": "{count} player slots",
+      "level": "Level",
+      "surface": "Surface",
+      "date": "Date",
+      "time": "Start time",
+      "duration": "Duration (minutes)",
+      "city": "City",
+      "chooseCity": "Choose a city",
+      "stadium": "Stadium",
+      "freeAddress": "Use another address",
+      "address": "Address",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "fieldPrice": "Total field price (UZS)",
+      "playerFee": "Fee per player (UZS)",
+      "feeHint": "Suggested from the field price and player slots. You can edit it.",
+      "joinMode": "Joining",
+      "ageGroup": "Age group",
+      "neededPositions": "Needed positions",
+      "reputationNotice": "Rating and attendance requirements will apply once player reputation data is available.",
+      "minRating": "Minimum rating",
+      "minAttendance": "Minimum attendance %",
+      "allowNew": "Allow new players",
+      "verifiedOnly": "Verified phone required",
+      "ownerPlays": "I am playing",
+      "ownerGuests": "My guests",
+      "back": "Back",
+      "next": "Continue",
+      "saveDraft": "Save draft",
+      "publish": "Publish",
+      "formats": {
+        "F5": "5 × 5 ({slots})",
+        "F6": "6 × 6 ({slots})",
+        "F7": "7 × 7 ({slots})",
+        "F8": "8 × 8 ({slots})",
+        "F9": "9 × 9 ({slots})",
+        "F11": "11 × 11 ({slots})"
+      },
+      "surfaces": {
+        "NATURAL_GRASS": "Natural grass",
+        "ARTIFICIAL_GRASS": "Artificial grass",
+        "PARQUET": "Parquet",
+        "RUBBER": "Rubber",
+        "CONCRETE": "Concrete"
+      },
+      "levels": {
+        "BEGINNER": "Beginner",
+        "AMATEUR": "Amateur",
+        "INTERMEDIATE": "Intermediate",
+        "ADVANCED": "Advanced",
+        "ANY": "Any level"
+      },
+      "ageGroups": {
+        "YOUTH": "Youth",
+        "ADULT": "Adults",
+        "MIXED": "Mixed ages"
+      },
+      "joinModes": {
+        "AUTO": "Join instantly",
+        "MANUAL": "Owner approval",
+        "INVITE_ONLY": "Invitation only"
+      }
+    },
+    "actions": {
+      "join": "Join match",
+      "request": "Request to join",
+      "waitlist": "Join waitlist",
+      "confirm": "Confirm my place",
+      "leave": "Leave",
+      "full": "Match is full",
+      "inviteOnly": "Invitation only",
+      "cancelled": "This match was cancelled",
+      "unavailable": "Joining is closed",
+      "failed": "The action could not be completed.",
+      "success": {
+        "join": "You joined the match.",
+        "request": "Your request was sent.",
+        "waitlist": "You joined the waitlist.",
+        "confirm": "Your place is confirmed.",
+        "leave": "You left the match."
+      }
+    },
+    "detail": {
+      "when": "When",
+      "invitePrivacy": "Match details and participants are visible only to invited members.",
+      "where": "Where",
+      "level": "Level",
+      "price": "Per player",
+      "surface": "Surface",
+      "duration": "Duration",
+      "minutes": "{count} minutes",
+      "players": "Participants",
+      "finished": "Match finished"
+    },
+    "seo": {
+      "title": "{format}×{format} football, {city}, {date} — {freeSlots} places free",
+      "description": "{format}×{format} football at {stadium}, {date}. {freeSlots} places are free. Join through Futzone.",
+      "inviteTitle": "{format}×{format} football, {city}, {date} — invitation only",
+      "inviteDescription": "{format}×{format} football in {city}, {date}. Details are visible only to invited players.",
+      "organizer": "Futzone match organizer",
+      "freeSlots": "{freeSlots} places free"
+    },
+    "owner": {
+      "title": "Organizer tools",
+      "publish": "Publish",
+      "published": "Match published.",
+      "requests": "Load join requests",
+      "inviteUsername": "Invite by username",
+      "invite": "Invite",
+      "invited": "Invitation sent.",
+      "cancelReason": "Cancellation reason",
+      "cancel": "Cancel match",
+      "cancelled": "Match cancelled.",
+      "warning": "Needs attention",
+      "summary": "Attendance: {attendance}% · No-shows: {noShows}",
+      "approve": "Approve",
+      "reject": "Reject",
+      "approved": "Request approved.",
+      "rejected": "Request rejected.",
+      "remove": "Remove",
+      "removed": "Participant removed."
+    },
+    "list": {
+      "title": "Find a football match",
+      "subtitle": "Choose an upcoming game and reserve your place.",
+      "create": "Create match",
+      "cityFilter": "Cities",
+      "dateFilter": "Dates",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "week": "This week",
+      "empty": "No matches are available yet.",
+      "km": "km",
+      "loadMore": "Load more",
+      "loading": "Loading…",
+      "loadMoreFailed": "Couldn't load more matches.",
+      "viewLabel": "View",
+      "viewList": "List",
+      "viewMap": "Map",
+      "viewMatch": "Open match",
+      "freeSlots": "{count} free slots",
+      "favoritesEmpty": "No matches from your favorites.",
+      "favoritesLogin": "Log in to see your favorites."
+    },
+    "filter": {
+      "title": "Filters",
+      "search": "Search",
+      "searchPlaceholder": "Match, stadium or address",
+      "city": "City",
+      "allCities": "All cities",
+      "date": "Date",
+      "format": "Format",
+      "level": "Level",
+      "surface": "Surface",
+      "joinMode": "Joining",
+      "anyJoinMode": "Any",
+      "position": "Position",
+      "anyPosition": "Any",
+      "onlyAvailable": "Only with free slots",
+      "minFreeSlots": "Min. free slots",
+      "price": "Price (UZS)",
+      "priceMin": "Min",
+      "priceMax": "Max",
+      "startHour": "Start hour",
+      "from": "from",
+      "to": "to",
+      "nearMe": "Near me",
+      "nearMeActive": "Location set",
+      "locating": "Locating…",
+      "radius": "Radius",
+      "geoUnavailable": "This browser can't determine your location.",
+      "geoDenied": "Location access was denied.",
+      "sort": "Sort",
+      "sortOptions": {
+        "soonest": "Starting soonest",
+        "nearest": "Nearest",
+        "newest": "Newest",
+        "mostFreeSlots": "Most free slots",
+        "organizerTrust": "Trusted organizer",
+        "priceAsc": "Price: low to high",
+        "priceDesc": "Price: high to low"
+      },
+      "apply": "Apply",
+      "reset": "Reset",
+      "filtersButton": "Filters",
+      "close": "Close",
+      "activeLabel": "Active filters",
+      "remove": "Remove",
+      "clearAll": "Clear all",
+      "favoritesOnly": "Favorites only"
+    },
+    "cityLanding": {
+      "title": "Football matches in {city}",
+      "intro": "Find upcoming football matches in {city} and reserve your place.",
+      "browseAll": "All matches and filters"
+    }
+  },
+  "positions": {
+    "GK": "Goalkeeper",
+    "DEF": "Defender",
+    "MID": "Midfielder",
+    "FWD": "Forward",
+    "UNIVERSAL": "Universal"
+  },
+  "favorites": {
+    "favorite": "Favorite",
+    "favorited": "Favorited",
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "title": "Favorites"
+  },
+  "stadiums": {
+    "title": "Stadiums",
+    "subtitle": "Football venues across Uzbekistan.",
+    "empty": "No stadiums yet.",
+    "viewCity": "{city} stadiums",
+    "inCity": "{city} stadiums",
+    "inCityIntro": "Approved football venues in {city}.",
+    "detailTitle": "{name} — stadium",
+    "upcomingHere": "Upcoming matches here",
+    "noUpcoming": "No upcoming matches at this stadium.",
+    "allHere": "All matches at this stadium"
+  }
+}

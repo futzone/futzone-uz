@@ -1,0 +1,39 @@
+# deps
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+build/
+.next/
+out/
+apps/api/src/generated/
+*.tsbuildinfo
+
+# turbo
+.turbo/
+
+# env
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# test / coverage
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# local agent state
+.remember/

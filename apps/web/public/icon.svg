@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Futzone">
+  <rect width="512" height="512" rx="96" fill="#16a34a"/>
+  <circle cx="256" cy="256" r="150" fill="none" stroke="#ffffff" stroke-width="28"/>
+  <path d="M256 150 L332 205 L303 294 L209 294 L180 205 Z" fill="#ffffff"/>
+  <text x="256" y="470" font-family="system-ui, sans-serif" font-size="90" font-weight="700" fill="#ffffff" text-anchor="middle">F</text>
+</svg>

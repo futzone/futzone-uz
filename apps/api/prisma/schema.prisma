@@ -1,0 +1,560 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Position {
+  GK
+  DEF
+  MID
+  FWD
+  UNIVERSAL
+}
+
+enum UserRole {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  WARNED
+  SUSPENDED
+  BANNED
+}
+
+enum OtpPurpose {
+  REGISTER
+  LOGIN
+}
+
+enum AvatarUploadStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+}
+
+enum Surface {
+  NATURAL_GRASS
+  ARTIFICIAL_GRASS
+  PARQUET
+  RUBBER
+  CONCRETE
+}
+enum Level {
+  BEGINNER
+  AMATEUR
+  INTERMEDIATE
+  ADVANCED
+  ANY
+}
+enum JoinMode {
+  AUTO
+  MANUAL
+  INVITE_ONLY
+}
+enum AgeGroup {
+  YOUTH
+  ADULT
+  MIXED
+}
+enum MatchStatus {
+  DRAFT
+  PUBLISHED
+  FULL
+  STARTED
+  FINISHED
+  ATTENDANCE_PENDING
+  RATING_PENDING
+  COMPLETED
+  CANCELLED
+}
+enum ParticipantRole {
+  OWNER
+  ASSISTANT
+  PLAYER
+}
+enum ParticipantStatus {
+  PENDING
+  PENDING_CONFIRMATION
+  CONFIRMED
+  DECLINED
+  LEFT
+  REMOVED
+  WAITLISTED
+}
+enum JoinRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  WITHDRAWN
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  EXPIRED
+}
+enum AttendanceStatus {
+  ON_TIME
+  LATE
+  NO_SHOW
+  CANCELLED_EARLY
+  EXCUSED
+  REMOVED_BY_OWNER
+}
+enum DisputeStatus {
+  OPEN
+  UPHELD
+  OVERTURNED
+}
+enum RatingStatus {
+  ACTIVE
+  HIDDEN
+  REMOVED
+}
+enum StadiumStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id              String     @id @db.Uuid
+  phone           String     @unique
+  phoneVerifiedAt DateTime?  @map("phone_verified_at") @db.Timestamptz(3)
+  firstName       String     @map("first_name")
+  lastName        String     @map("last_name")
+  username        String     @unique
+  avatarUrl       String?    @map("avatar_url")
+  avatarUploadKey String?    @map("avatar_upload_key")
+  bio             String?    @db.VarChar(300)
+  cityId          String?    @map("city_id") @db.Uuid
+  position        Position?
+  locale          String     @default("uz")
+  role            UserRole   @default(USER)
+  status          UserStatus @default(ACTIVE)
+  suspendedUntil  DateTime?  @map("suspended_until") @db.Timestamptz(3)
+  createdAt       DateTime   @default(now()) @map("created_at") @db.Timestamptz(3)
+  deletedAt       DateTime?  @map("deleted_at") @db.Timestamptz(3)
+  usernameChangedAt DateTime? @map("username_changed_at") @db.Timestamptz(3)
+  city            City?      @relation(fields: [cityId], references: [id])
+  sessions        Session[]
+  avatarUploads   AvatarUpload[]
+  createdStadiums Stadium[] @relation("StadiumCreator")
+  ownedMatches    Match[] @relation("MatchOwner")
+  matchParticipants MatchParticipant[]
+  notifications Notification[]
+  pushSubscriptions PushSubscription[]
+  notificationPreference NotificationPreference?
+  joinRequests JoinRequest[] @relation("JoinRequester")
+  decidedJoinRequests JoinRequest[] @relation("JoinRequestDecider")
+  sentInvitations Invitation[] @relation("InvitationInviter")
+  receivedInvitations Invitation[] @relation("InvitationInvitee")
+  auditLogs AuditLog[]
+  markedAttendance AttendanceRecord[] @relation("AttendanceMarker")
+  resolvedAttendanceDisputes AttendanceRecord[] @relation("AttendanceResolver")
+  ratingsGiven Rating[] @relation("RatingRater")
+  ratingsReceived Rating[] @relation("RatingRatee")
+  ratingReports Report[]
+  stats UserStats?
+  badges UserBadge[]
+  favoriteStadiums   FavoriteStadium[]   @relation("UserFavoriteStadiums")
+  favoriteOrganizers FavoriteOrganizer[] @relation("UserFavoriteOrganizers")
+  favoritedByUsers   FavoriteOrganizer[] @relation("OrganizerFavoritedBy")
+
+  @@index([phone])
+  @@index([username])
+  @@map("users")
+}
+
+model AvatarUpload {
+  id                String             @id @db.Uuid
+  userId            String             @map("user_id") @db.Uuid
+  objectKey         String             @unique @map("object_key")
+  processedKey      String             @unique @map("processed_key")
+  expectedSize      Int                @map("expected_size")
+  status            AvatarUploadStatus @default(PENDING)
+  previousAvatarKey String?            @map("previous_avatar_key")
+  createdAt         DateTime           @default(now()) @map("created_at") @db.Timestamptz(3)
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@map("avatar_uploads")
+}
+
+model OtpRequest {
+  id         String     @id @db.Uuid
+  phone      String
+  codeHash   String     @map("code_hash")
+  purpose    OtpPurpose
+  expiresAt  DateTime   @map("expires_at") @db.Timestamptz(3)
+  attempts   Int        @default(0)
+  consumedAt DateTime?  @map("consumed_at") @db.Timestamptz(3)
+  createdAt  DateTime   @default(now()) @map("created_at") @db.Timestamptz(3)
+  ip         String
+
+  @@index([phone, purpose, createdAt])
+  @@map("otp_requests")
+}
+
+model Session {
+  id               String   @id @db.Uuid
+  userId           String   @map("user_id") @db.Uuid
+  refreshTokenHash String   @map("refresh_token_hash")
+  family           String   @db.Uuid
+  expiresAt        DateTime @map("expires_at") @db.Timestamptz(3)
+  revokedAt        DateTime? @map("revoked_at") @db.Timestamptz(3)
+  userAgent        String?  @map("user_agent")
+  ip               String
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([family])
+  @@index([userId])
+  @@map("sessions")
+}
+
+model City {
+  id         String   @id @db.Uuid
+  slug       String   @unique
+  nameUz     String   @map("name_uz")
+  nameUzCyrl String   @map("name_uz_cyrl")
+  nameRu     String   @map("name_ru")
+  nameEn     String   @map("name_en")
+  region     String
+  lat        Decimal  @db.Decimal(9, 6)
+  lng        Decimal  @db.Decimal(9, 6)
+  isActive   Boolean  @default(true) @map("is_active")
+  users      User[]
+  stadiums   Stadium[]
+  matches    Match[]
+
+  @@map("cities")
+}
+
+model Stadium {
+  id          String @id @db.Uuid
+  slug        String @unique
+  nameUz      String @map("name_uz")
+  nameRu      String @map("name_ru")
+  nameEn      String @map("name_en")
+  cityId      String @map("city_id") @db.Uuid
+  district    String
+  address     String
+  location    Unsupported("geography(Point,4326)")
+  surface     Surface
+  photos      String[]
+  status      StadiumStatus @default(PENDING)
+  createdById String @map("created_by_id") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  city        City @relation(fields: [cityId], references: [id])
+  createdBy   User @relation("StadiumCreator", fields: [createdById], references: [id])
+  matches     Match[]
+  favoritedBy FavoriteStadium[]
+
+  @@index([cityId, status])
+  @@map("stadiums")
+}
+
+model FavoriteStadium {
+  userId    String   @map("user_id") @db.Uuid
+  stadiumId String   @map("stadium_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  user      User     @relation("UserFavoriteStadiums", fields: [userId], references: [id], onDelete: Cascade)
+  stadium   Stadium  @relation(fields: [stadiumId], references: [id], onDelete: Cascade)
+
+  @@id([userId, stadiumId])
+  @@index([stadiumId])
+  @@map("favorite_stadiums")
+}
+
+model FavoriteOrganizer {
+  userId      String   @map("user_id") @db.Uuid
+  organizerId String   @map("organizer_id") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  user        User     @relation("UserFavoriteOrganizers", fields: [userId], references: [id], onDelete: Cascade)
+  organizer   User     @relation("OrganizerFavoritedBy", fields: [organizerId], references: [id], onDelete: Cascade)
+
+  @@id([userId, organizerId])
+  @@index([organizerId])
+  @@map("favorite_organizers")
+}
+
+model Match {
+  id                    String @id @db.Uuid
+  slug                  String @unique
+  ownerId               String @map("owner_id") @db.Uuid
+  title                 String
+  format                String
+  totalSlots            Int @map("total_slots")
+  startsAt              DateTime @map("starts_at") @db.Timestamptz(3)
+  durationMin           Int @map("duration_min")
+  cityId                String @map("city_id") @db.Uuid
+  stadiumId             String? @map("stadium_id") @db.Uuid
+  address               String?
+  location              Unsupported("geography(Point,4326)")?
+  fieldPriceUzs         Int @map("field_price_uzs")
+  perPlayerFeeUzs       Int @map("per_player_fee_uzs")
+  surface               Surface
+  level                 Level
+  joinMode              JoinMode @map("join_mode")
+  minRating             Decimal? @map("min_rating") @db.Decimal(2, 1)
+  minAttendancePct      Int? @map("min_attendance_pct")
+  allowNewPlayers       Boolean @default(true) @map("allow_new_players")
+  neededPositions       Position[] @map("needed_positions")
+  ageGroup              AgeGroup @default(MIXED) @map("age_group")
+  verifiedPhoneOnly     Boolean @default(false) @map("verified_phone_only")
+  status                MatchStatus @default(DRAFT)
+  cancelledReason       String? @map("cancelled_reason")
+  flaggedAt             DateTime? @map("flagged_at") @db.Timestamptz(3)
+  flaggedReason         String? @map("flagged_reason")
+  flaggedById           String? @map("flagged_by_id") @db.Uuid
+  createdAt             DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  deletedAt             DateTime? @map("deleted_at") @db.Timestamptz(3)
+  owner                 User @relation("MatchOwner", fields: [ownerId], references: [id])
+  city                  City @relation(fields: [cityId], references: [id])
+  stadium               Stadium? @relation(fields: [stadiumId], references: [id])
+  participants          MatchParticipant[]
+  notifications         Notification[]
+  joinRequests          JoinRequest[]
+  invitations           Invitation[]
+  attendanceRecords     AttendanceRecord[]
+  ratings               Rating[]
+
+  @@index([cityId, status, startsAt])
+  @@map("matches")
+}
+
+model JoinRequest {
+  id          String @id @db.Uuid
+  matchId     String @map("match_id") @db.Uuid
+  userId      String @map("user_id") @db.Uuid
+  message     String?
+  guestCount  Int @default(0) @map("guest_count")
+  status      JoinRequestStatus @default(PENDING)
+  decidedById String? @map("decided_by_id") @db.Uuid
+  decidedAt   DateTime? @map("decided_at") @db.Timestamptz(3)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  match       Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  user        User @relation("JoinRequester", fields: [userId], references: [id])
+  decidedBy   User? @relation("JoinRequestDecider", fields: [decidedById], references: [id])
+
+  @@unique([matchId, userId])
+  @@index([matchId, status, createdAt])
+  @@map("join_requests")
+}
+
+model Invitation {
+  id        String @id @db.Uuid
+  matchId   String @map("match_id") @db.Uuid
+  inviterId String @map("inviter_id") @db.Uuid
+  inviteeId String? @map("invitee_id") @db.Uuid
+  token     String @unique
+  status    InvitationStatus @default(PENDING)
+  expiresAt DateTime @map("expires_at") @db.Timestamptz(3)
+  match     Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  inviter   User @relation("InvitationInviter", fields: [inviterId], references: [id])
+  invitee   User? @relation("InvitationInvitee", fields: [inviteeId], references: [id])
+
+  @@index([matchId, inviteeId, status])
+  @@index([expiresAt, status])
+  @@map("invitations")
+}
+
+model MatchParticipant {
+  id               String @id @db.Uuid
+  matchId          String @map("match_id") @db.Uuid
+  userId           String @map("user_id") @db.Uuid
+  role             ParticipantRole
+  status           ParticipantStatus
+  guestCount       Int @default(0) @map("guest_count")
+  waitlistPosition Int? @map("waitlist_position")
+  promotionExpiresAt DateTime? @map("promotion_expires_at") @db.Timestamptz(3)
+  joinedAt         DateTime @default(now()) @map("joined_at") @db.Timestamptz(3)
+  leftAt           DateTime? @map("left_at") @db.Timestamptz(3)
+  match            Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  user             User @relation(fields: [userId], references: [id])
+  attendanceRecord AttendanceRecord?
+
+  @@unique([matchId, userId])
+  @@index([matchId, status])
+  @@map("match_participants")
+}
+
+model AttendanceRecord {
+  id                  String @id @db.Uuid
+  matchId             String @map("match_id") @db.Uuid
+  participantId       String @unique @map("participant_id") @db.Uuid
+  status              AttendanceStatus
+  guestNoShowCount    Int @default(0) @map("guest_no_show_count")
+  markedById          String @map("marked_by_id") @db.Uuid
+  markedAt            DateTime @map("marked_at") @db.Timestamptz(3)
+  disputeStatus       DisputeStatus? @map("dispute_status")
+  disputeNote         String? @map("dispute_note")
+  disputeResolvedById String? @map("dispute_resolved_by_id") @db.Uuid
+  finalizedAt         DateTime? @map("finalized_at") @db.Timestamptz(3)
+  match               Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  participant         MatchParticipant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  markedBy            User @relation("AttendanceMarker", fields: [markedById], references: [id])
+  disputeResolvedBy   User? @relation("AttendanceResolver", fields: [disputeResolvedById], references: [id])
+
+  @@index([matchId])
+  @@index([finalizedAt])
+  @@map("attendance_records")
+}
+
+model Rating {
+  id          String       @id @db.Uuid
+  matchId     String       @map("match_id") @db.Uuid
+  raterId     String       @map("rater_id") @db.Uuid
+  rateeId     String       @map("ratee_id") @db.Uuid
+  discipline  Int
+  punctuality Int
+  fairPlay    Int          @map("fair_play")
+  teamPlay    Int          @map("team_play")
+  overall     Int
+  comment     String?      @db.VarChar(500)
+  status      RatingStatus @default(ACTIVE)
+  createdAt   DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
+  deletedAt   DateTime?    @map("deleted_at") @db.Timestamptz(3)
+  match       Match        @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  rater       User         @relation("RatingRater", fields: [raterId], references: [id])
+  ratee       User         @relation("RatingRatee", fields: [rateeId], references: [id])
+  reports     Report[]
+
+  @@unique([matchId, raterId, rateeId])
+  @@index([rateeId, status])
+  @@index([raterId, status])
+  @@map("ratings")
+}
+
+model Report {
+  id         String   @id @db.Uuid
+  ratingId   String   @map("rating_id") @db.Uuid
+  reporterId String   @map("reporter_id") @db.Uuid
+  reason     String   @db.VarChar(500)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  rating     Rating   @relation(fields: [ratingId], references: [id], onDelete: Cascade)
+  reporter   User     @relation(fields: [reporterId], references: [id])
+
+  @@unique([ratingId, reporterId])
+  @@index([ratingId, createdAt])
+  @@map("reports")
+}
+
+model UserStats {
+  userId             String   @id @map("user_id") @db.Uuid
+  matchesPlayed      Int      @default(0) @map("matches_played")
+  matchesOrganized   Int      @default(0) @map("matches_organized")
+  onTime             Int      @default(0) @map("on_time")
+  late               Int      @default(0)
+  noShow             Int      @default(0) @map("no_show")
+  cancelledEarly     Int      @default(0) @map("cancelled_early")
+  excused            Int      @default(0)
+  attendancePct      Decimal? @map("attendance_pct") @db.Decimal(5, 2)
+  bayesAvg           Decimal? @map("bayes_avg") @db.Decimal(3, 2)
+  ratingCount        Int      @default(0) @map("rating_count")
+  lastFiveAvg        Decimal? @map("last_five_avg") @db.Decimal(3, 2)
+  updatedAt          DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_stats")
+}
+
+model Badge {
+  id          String      @id @db.Uuid
+  code        String      @unique
+  name        String
+  description String
+  userBadges  UserBadge[]
+
+  @@map("badges")
+}
+
+model UserBadge {
+  userId    String   @map("user_id") @db.Uuid
+  badgeCode String   @map("badge_code")
+  awardedAt DateTime @default(now()) @map("awarded_at") @db.Timestamptz(3)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badge     Badge    @relation(fields: [badgeCode], references: [code])
+
+  @@id([userId, badgeCode])
+  @@unique([userId, badgeCode])
+  @@map("user_badges")
+}
+
+model Notification {
+  id        String @id @db.Uuid
+  userId    String @map("user_id") @db.Uuid
+  matchId   String? @map("match_id") @db.Uuid
+  type      String
+  payload   Json
+  readAt    DateTime? @map("read_at") @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  match     Match? @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  @@index([userId, createdAt])
+  @@index([userId, readAt])
+  @@map("notifications")
+}
+
+model PushSubscription {
+  id        String @id @db.Uuid
+  userId    String @map("user_id") @db.Uuid
+  endpoint  String @unique
+  keys      Json
+  userAgent String? @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+  @@map("push_subscriptions")
+}
+
+model NotificationPreference {
+  userId              String @id @map("user_id") @db.Uuid
+  perTypeChannelFlags Json   @default("{}") @map("per_type_channel_flags")
+  updatedAt           DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  user                User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@map("notification_preferences")
+}
+
+model AuditLog {
+  id        String @id @db.Uuid
+  actorId   String @map("actor_id") @db.Uuid
+  action    String
+  targetType String @map("target_type")
+  targetId  String @map("target_id") @db.Uuid
+  metadata  Json?
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  actor     User @relation(fields: [actorId], references: [id])
+  @@index([actorId, createdAt])
+  @@index([targetType, targetId, createdAt])
+  @@index([action, createdAt])
+  @@map("audit_logs")
+}
+
+// One nightly snapshot per day; the admin dashboard reads these instead of running heavy live queries.
+model AdminMetricsDaily {
+  date             DateTime @id @db.Date
+  totalUsers       Int      @map("total_users")
+  newUsers         Int      @map("new_users")
+  activeUsers7d    Int      @map("active_users_7d")
+  activeUsers30d   Int      @map("active_users_30d")
+  dau              Int
+  wau              Int
+  matchesCreated   Int      @map("matches_created")
+  matchesCompleted Int      @map("matches_completed")
+  matchesCancelled Int      @map("matches_cancelled")
+  attendancePct    Decimal? @map("attendance_pct") @db.Decimal(5, 2)
+  activityByCity   Json     @map("activity_by_city")
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  @@map("admin_metrics_daily")
+}

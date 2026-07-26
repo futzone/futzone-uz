@@ -1,0 +1,398 @@
+{
+  "auth": {
+    "pageTitle": "Kirish yoki ro‘yxatdan o‘tish",
+    "phoneTitle": "Futzone’ga xush kelibsiz",
+    "otpTitle": "Tasdiqlash kodini kiriting",
+    "registrationTitle": "Futbolchi profilingizni yarating",
+    "login": "Kirish",
+    "register": "Ro‘yxatdan o‘tish",
+    "logout": "Chiqish",
+    "phone": "Telefon raqami",
+    "phonePlaceholder": "+998 90 123 45 67",
+    "phoneInvalid": "O‘zbekiston telefon raqamini to‘g‘ri kiriting.",
+    "privacy": "Raqamingiz faqat hisobni himoyalash uchun ishlatiladi va hech qachon oshkor qilinmaydi.",
+    "sendCode": "Kod yuborish",
+    "codeSent": "Telefoningizga yuborilgan olti xonali kodni kiriting.",
+    "code": "Tasdiqlash kodi",
+    "codeInvalid": "Olti raqamning barchasini kiriting.",
+    "verify": "Tasdiqlash",
+    "resend": "Yangi kod yuborish",
+    "resendIn": "{seconds} soniyadan keyin qayta yuborish",
+    "usernameAvailable": "Bu foydalanuvchi nomi bo‘sh.",
+    "completeRegistration": "Profil yaratish",
+    "useLocation": "Joylashuvimdan foydalanish",
+    "locationUnavailable": "Bu brauzerda joylashuvni aniqlab bo‘lmaydi.",
+    "locationDenied": "Joylashuvga ruxsat berilmadi. Shaharni qo‘lda tanlang.",
+    "locationNoMatch": "Joylashuvingizga mos shahar topilmadi. Uni qo‘lda tanlang."
+  },
+  "profile": {
+    "metadataTitle": "{name} — Futzone futbolchisi",
+    "metadataDescription": "Futzone’dagi {name} (@{username}) profilini ko‘ring.",
+    "settingsTitle": "Profil sozlamalari",
+    "firstName": "Ism",
+    "lastName": "Familiya",
+    "username": "Foydalanuvchi nomi",
+    "usernameInvalid": "3–20 ta kichik lotin harfi, raqam yoki pastki chiziqdan foydalaning.",
+    "usernameChangeDate": "Foydalanuvchi nomini {date} kuni yana o‘zgartirishingiz mumkin.",
+    "phone": "Telefon raqami",
+    "bio": "O‘zim haqimda",
+    "city": "Shahar",
+    "position": "Pozitsiya",
+    "locale": "Afzal til",
+    "notSet": "Ko‘rsatilmagan",
+    "avatar": "Profil rasmi",
+    "avatarPreview": "Profil rasmi ko‘rinishi",
+    "avatarInvalid": "5 MB dan oshmagan JPEG, PNG yoki WebP rasm tanlang.",
+    "uploadAvatar": "Rasm yuklash",
+    "uploadProgress": "Yuklash jarayoni",
+    "avatarProcessing": "Rasm yuklandi va tez orada qayta ishlanadi.",
+    "save": "Saqlash",
+    "saved": "O‘zgarishlar saqlandi.",
+    "verified": "Tasdiqlangan",
+    "newPlayer": "Yangi futbolchi",
+    "joined": "Qo‘shilgan sana",
+    "badges": "Nishonlar",
+    "attendanceBreakdown": "Davomat tafsilotlari",
+    "recentMatches": "So‘nggi o‘yinlar",
+    "noRecentMatches": "So‘nggi ochiq o‘yinlar yo‘q.",
+    "ownHint": "Sizda jamoadoshlarga berilmagan {count} ta baho bor. Yakunlash uchun so‘nggi o‘yinni oching.",
+    "attendance": {
+      "onTime": "Vaqtida",
+      "late": "Kechikdi",
+      "noShow": "Kelmadi",
+      "cancelledEarly": "Oldindan bekor qildi"
+    },
+    "comments": {
+      "title": "O‘yinchi haqidagi izohlar",
+      "empty": "Hozircha ochiq izohlar yo‘q.",
+      "previous": "Oldingi",
+      "next": "Keyingi"
+    },
+    "report": {
+      "button": "Shikoyat qilish",
+      "reason": "Shikoyat sababi",
+      "submit": "Yuborish",
+      "sent": "Shikoyat tekshiruvga yuborildi.",
+      "failed": "Shikoyatni yuborib bo‘lmadi."
+    },
+    "badgeCatalog": {
+      "RELIABLE_PLAYER": {
+        "name": "Ishonchli o‘yinchi",
+        "description": "Kamida 10 ta o‘yinda 90% yoki undan yuqori davomat."
+      },
+      "TEN_MATCHES": {
+        "name": "10 ta o‘yin",
+        "description": "Futzone’da 10 ta o‘yin o‘tkazgan."
+      },
+      "FIFTY_MATCHES": {
+        "name": "50 ta o‘yin",
+        "description": "Futzone’da 50 ta o‘yin o‘tkazgan."
+      },
+      "PERFECT_ATTENDANCE": {
+        "name": "Mukammal davomat",
+        "description": "Kamida 15 ta o‘yinda biror marta ham kelmay qolmagan."
+      },
+      "TRUSTED_ORGANIZER": {
+        "name": "Ishonchli tashkilotchi",
+        "description": "Kamida 10 ta o‘yin tashkil qilgan va ularning 10% dan kamini bekor qilgan."
+      },
+      "FAIR_PLAY": {
+        "name": "Halol o‘yin",
+        "description": "Kamida 10 ta bahoda halol o‘yin ko‘rsatkichi o‘rtacha 4,5 yoki undan yuqori."
+      }
+    },
+    "stats": {
+      "matchesPlayed": "O‘yinlar",
+      "matchesOrganized": "Tashkil qilingan",
+      "attendance": "Qatnashuv",
+      "bayesAvg": "Reyting",
+      "ratingCount": "{count} ta baho"
+    }
+  },
+  "attendance": {
+    "title": "Davomatni belgilash",
+    "guestNoShows": "Kelmagan mehmonlar",
+    "saved": "Davomat saqlandi.",
+    "failed": "Davomatni saqlab bo‘lmadi.",
+    "status": {
+      "ON_TIME": "Vaqtida",
+      "LATE": "Kechikdi",
+      "NO_SHOW": "Kelmadi",
+      "CANCELLED_EARLY": "Oldindan bekor qildi",
+      "EXCUSED": "Uzrli",
+      "REMOVED_BY_OWNER": "Tashkilotchi tomonidan chiqarildi"
+    }
+  },
+  "ratings": {
+    "title": "Jamoadoshlaringizni baholang",
+    "teammate": "Jamoadosh",
+    "criteria": {
+      "discipline": "Intizom",
+      "punctuality": "Vaqtga rioya",
+      "fairPlay": "Halol o‘yin",
+      "teamPlay": "Jamoaviy o‘yin",
+      "overall": "Umumiy baho"
+    },
+    "comment": "Ixtiyoriy ochiq izoh",
+    "submit": "Bahoni yuborish",
+    "saved": "Baho yuborildi.",
+    "failed": "Bahoni yuborib bo‘lmadi.",
+    "validation": "Har bir mezon uchun 1 dan 5 gacha baho tanlang, izoh 500 belgidan oshmasin.",
+    "complete": "Barcha mos jamoadoshlaringizni baholadingiz.",
+    "windowClosed": "Baho berishning yetti kunlik muddati tugadi."
+  },
+  "dispute": {
+    "title": "Davomatga e’tiroz",
+    "description": "Nimani tuzatish kerakligini yozing. E’tiroz davomat belgilanganidan keyin 72 soat ichida qabul qilinadi.",
+    "note": "E’tiroz izohi",
+    "submit": "E’tirozni yuborish",
+    "sent": "E’tirozingiz yuborildi.",
+    "failed": "E’tirozni yuborib bo‘lmadi.",
+    "closed": "E’tiroz bildirish uchun 72 soatlik muddat tugadi."
+  },
+  "matches": {
+    "occupancy": "O‘yinchilar",
+    "guests": "+{count} — {username} bilan",
+    "map": {
+      "label": "O‘yin joyi xaritasi",
+      "instructions": "Belgini qo‘yish uchun xaritani bosing yoki koordinatalarni qo‘lda kiriting.",
+      "fallback": "Interaktiv xarita mavjud emas. Manzil va koordinatalarni qo‘lda kiriting."
+    },
+    "wizard": {
+      "metadata": "O‘yin yaratish",
+      "progress": "O‘yin yaratish bosqichlari",
+      "loadError": "Ma’lumotlarni yuklab bo‘lmadi.",
+      "validation": "Davom etish uchun zarur maydonlarni to‘ldiring.",
+      "steps": {
+        "basics": "Asosiy ma’lumotlar",
+        "venue": "Vaqt va joy",
+        "money": "Narx",
+        "rules": "Qoidalar",
+        "review": "O‘yinni tekshirish"
+      },
+      "title": "Nomi",
+      "format": "Format",
+      "slots": "{count} ta joy",
+      "level": "Daraja",
+      "surface": "Qoplama",
+      "date": "Sana",
+      "time": "Boshlanish vaqti",
+      "duration": "Davomiyligi (daqiqa)",
+      "city": "Shahar",
+      "chooseCity": "Shaharni tanlang",
+      "stadium": "Stadion",
+      "freeAddress": "Boshqa manzil",
+      "address": "Manzil",
+      "latitude": "Kenglik",
+      "longitude": "Uzunlik",
+      "fieldPrice": "Maydon narxi (UZS)",
+      "playerFee": "Bir o‘yinchi uchun (UZS)",
+      "feeHint": "Maydon narxi va joylar sonidan hisoblandi. O‘zgartirish mumkin.",
+      "joinMode": "Qo‘shilish",
+      "ageGroup": "Yosh guruhi",
+      "neededPositions": "Kerakli pozitsiyalar",
+      "reputationNotice": "Reyting va qatnashuv talablari obro‘ ma’lumotlari mavjud bo‘lgach ishlaydi.",
+      "minRating": "Minimal reyting",
+      "minAttendance": "Minimal qatnashuv %",
+      "allowNew": "Yangi o‘yinchilarga ruxsat",
+      "verifiedOnly": "Telefon tasdiqlangan bo‘lsin",
+      "ownerPlays": "Men ham o‘ynayman",
+      "ownerGuests": "Mehmonlarim",
+      "back": "Orqaga",
+      "next": "Davom etish",
+      "saveDraft": "Qoralama saqlash",
+      "publish": "E’lon qilish",
+      "formats": {
+        "F5": "5 × 5 ({slots})",
+        "F6": "6 × 6 ({slots})",
+        "F7": "7 × 7 ({slots})",
+        "F8": "8 × 8 ({slots})",
+        "F9": "9 × 9 ({slots})",
+        "F11": "11 × 11 ({slots})"
+      },
+      "surfaces": {
+        "NATURAL_GRASS": "Tabiiy chim",
+        "ARTIFICIAL_GRASS": "Sun’iy chim",
+        "PARQUET": "Parket",
+        "RUBBER": "Rezina",
+        "CONCRETE": "Beton"
+      },
+      "levels": {
+        "BEGINNER": "Boshlovchi",
+        "AMATEUR": "Havaskor",
+        "INTERMEDIATE": "O‘rta",
+        "ADVANCED": "Kuchli",
+        "ANY": "Har qanday"
+      },
+      "ageGroups": {
+        "YOUTH": "Yoshlar",
+        "ADULT": "Kattalar",
+        "MIXED": "Aralash"
+      },
+      "joinModes": {
+        "AUTO": "Darhol qo‘shilish",
+        "MANUAL": "Tasdiq bilan",
+        "INVITE_ONLY": "Taklif bilan"
+      }
+    },
+    "actions": {
+      "join": "O‘yinga qo‘shilish",
+      "request": "So‘rov yuborish",
+      "waitlist": "Kutish ro‘yxatiga",
+      "confirm": "Joyni tasdiqlash",
+      "leave": "Chiqish",
+      "full": "Joy qolmagan",
+      "inviteOnly": "Faqat taklif bilan",
+      "cancelled": "O‘yin bekor qilingan",
+      "unavailable": "Ro‘yxat yopilgan",
+      "failed": "Amalni bajarib bo‘lmadi.",
+      "success": {
+        "join": "O‘yinga qo‘shildingiz.",
+        "request": "So‘rov yuborildi.",
+        "waitlist": "Kutish ro‘yxatiga qo‘shildingiz.",
+        "confirm": "Joyingiz tasdiqlandi.",
+        "leave": "O‘yindan chiqdingiz."
+      }
+    },
+    "detail": {
+      "when": "Qachon",
+      "invitePrivacy": "O‘yin tafsilotlari va ishtirokchilar faqat taklif etilganlarga ko‘rinadi.",
+      "where": "Qayerda",
+      "level": "Daraja",
+      "price": "Bir o‘yinchi uchun",
+      "surface": "Qoplama",
+      "duration": "Davomiyligi",
+      "minutes": "{count} daqiqa",
+      "players": "Ishtirokchilar",
+      "finished": "O‘yin yakunlangan"
+    },
+    "seo": {
+      "title": "{format}×{format} futbol, {city}, {date} — {freeSlots} ta joy bor",
+      "description": "{stadium}da {format}×{format} futbol: {date}. {freeSlots} ta bo‘sh joy. Futzone orqali qo‘shiling.",
+      "inviteTitle": "{format}×{format} futbol, {city}, {date} — faqat taklif bilan",
+      "inviteDescription": "{city}dagi {format}×{format} futbol o‘yini {date}. Tafsilotlar faqat taklif etilganlarga ko‘rinadi.",
+      "organizer": "Futzone o‘yin tashkilotchisi",
+      "freeSlots": "{freeSlots} ta joy bor"
+    },
+    "owner": {
+      "title": "Tashkilotchi vositalari",
+      "publish": "E’lon qilish",
+      "published": "O‘yin e’lon qilindi.",
+      "requests": "So‘rovlarni yuklash",
+      "inviteUsername": "Foydalanuvchi nomi bilan taklif",
+      "invite": "Taklif qilish",
+      "invited": "Taklif yuborildi.",
+      "cancelReason": "Bekor qilish sababi",
+      "cancel": "O‘yinni bekor qilish",
+      "cancelled": "O‘yin bekor qilindi.",
+      "warning": "E’tibor bering",
+      "summary": "Qatnashuv: {attendance}% · Kelmagan: {noShows}",
+      "approve": "Qabul qilish",
+      "reject": "Rad etish",
+      "approved": "So‘rov qabul qilindi.",
+      "rejected": "So‘rov rad etildi.",
+      "remove": "Chiqarish",
+      "removed": "Ishtirokchi chiqarildi."
+    },
+    "list": {
+      "title": "Futbol o‘yinini toping",
+      "subtitle": "Yaqin o‘yinni tanlang va joyingizni oling.",
+      "create": "O‘yin yaratish",
+      "cityFilter": "Shaharlar",
+      "dateFilter": "Sanalar",
+      "today": "Bugun",
+      "tomorrow": "Ertaga",
+      "week": "Shu hafta",
+      "empty": "Hozircha o‘yinlar yo‘q.",
+      "km": "km",
+      "loadMore": "Yana ko‘rsatish",
+      "loading": "Yuklanmoqda…",
+      "loadMoreFailed": "Ko‘proq o‘yin yuklab bo‘lmadi.",
+      "viewLabel": "Ko‘rinish",
+      "viewList": "Ro‘yxat",
+      "viewMap": "Xarita",
+      "viewMatch": "O‘yinni ochish",
+      "freeSlots": "{count} ta bo‘sh joy",
+      "favoritesEmpty": "Sevimlilaringiz bo‘yicha o‘yinlar topilmadi.",
+      "favoritesLogin": "Sevimlilarni ko‘rish uchun tizimga kiring."
+    },
+    "filter": {
+      "title": "Filtrlar",
+      "search": "Qidiruv",
+      "searchPlaceholder": "O‘yin, stadion yoki manzil",
+      "city": "Shahar",
+      "allCities": "Barcha shaharlar",
+      "date": "Sana",
+      "format": "Format",
+      "level": "Daraja",
+      "surface": "Qoplama",
+      "joinMode": "Qo‘shilish",
+      "anyJoinMode": "Har qanday",
+      "position": "Pozitsiya",
+      "anyPosition": "Har qanday",
+      "onlyAvailable": "Faqat bo‘sh joyi borlar",
+      "minFreeSlots": "Kamida bo‘sh joy",
+      "price": "Narx (UZS)",
+      "priceMin": "Eng kam",
+      "priceMax": "Eng ko‘p",
+      "startHour": "Boshlanish soati",
+      "from": "dan",
+      "to": "gacha",
+      "nearMe": "Yaqinimda",
+      "nearMeActive": "Joylashuv aniqlandi",
+      "locating": "Aniqlanmoqda…",
+      "radius": "Radius",
+      "geoUnavailable": "Bu brauzerda joylashuvni aniqlab bo‘lmaydi.",
+      "geoDenied": "Joylashuvga ruxsat berilmadi.",
+      "sort": "Saralash",
+      "sortOptions": {
+        "soonest": "Eng yaqin vaqt",
+        "nearest": "Eng yaqin masofa",
+        "newest": "Eng yangi",
+        "mostFreeSlots": "Ko‘p bo‘sh joy",
+        "organizerTrust": "Ishonchli tashkilotchi",
+        "priceAsc": "Narx: arzondan",
+        "priceDesc": "Narx: qimmatdan"
+      },
+      "apply": "Qo‘llash",
+      "reset": "Tozalash",
+      "filtersButton": "Filtrlar",
+      "close": "Yopish",
+      "activeLabel": "Faol filtrlar",
+      "remove": "Olib tashlash",
+      "clearAll": "Hammasini tozalash",
+      "favoritesOnly": "Faqat sevimlilar"
+    },
+    "cityLanding": {
+      "title": "{city}da futbol o‘yinlari",
+      "intro": "{city}dagi eng yaqin futbol o‘yinlarini toping va joyingizni band qiling.",
+      "browseAll": "Barcha o‘yinlar va filtrlar"
+    }
+  },
+  "positions": {
+    "GK": "Darvozabon",
+    "DEF": "Himoyachi",
+    "MID": "Yarim himoyachi",
+    "FWD": "Hujumchi",
+    "UNIVERSAL": "Universal"
+  },
+  "favorites": {
+    "favorite": "Sevimli",
+    "favorited": "Sevimlida",
+    "add": "Sevimlilarga qo‘shish",
+    "remove": "Sevimlilardan olib tashlash",
+    "title": "Sevimlilar"
+  },
+  "stadiums": {
+    "title": "Stadionlar",
+    "subtitle": "O‘zbekistondagi futbol maydonlarini ko‘ring.",
+    "empty": "Hozircha stadionlar yo‘q.",
+    "viewCity": "{city} stadionlari",
+    "inCity": "{city} stadionlari",
+    "inCityIntro": "{city}dagi tasdiqlangan futbol maydonlari.",
+    "detailTitle": "{name} — stadion",
+    "upcomingHere": "Shu yerdagi o‘yinlar",
+    "noUpcoming": "Shu stadionda rejalashtirilgan o‘yinlar yo‘q.",
+    "allHere": "Shu stadiondagi barcha o‘yinlar"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalPassThroughEnv": ["PRISMA_QUERY_ENGINE_LIBRARY"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "env": ["NODE_ENV", "DATABASE_URL", "NEXT_PUBLIC_API_URL", "NEXT_PUBLIC_SITE_URL"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "lint": { "dependsOn": ["^lint", "^build"], "outputs": [] },
+    "typecheck": { "dependsOn": ["^typecheck", "^build"], "env": ["DATABASE_URL"], "outputs": [] },
+    "test": { "dependsOn": ["^build"], "env": ["DATABASE_URL", "TEST_DATABASE_URL"] },
+    "dev": {
+      "dependsOn": ["^build"],
+      "env": [
+        "NODE_ENV",
+        "WEB_PORT",
+        "ADMIN_PORT",
+        "API_PORT",
+        "DATABASE_URL",
+        "TEST_DATABASE_URL",
+        "REDIS_URL",
+        "JWT_ACCESS_SECRET",
+        "JWT_REFRESH_SECRET",
+        "JWT_ACCESS_TTL",
+        "JWT_REFRESH_TTL",
+        "S3_ENDPOINT",
+        "S3_BUCKET",
+        "S3_ACCESS_KEY",
+        "S3_SECRET_KEY",
+        "S3_REGION",
+        "SMS_PROVIDER",
+        "MOCK_SMS_URL",
+        "ESKIZ_EMAIL",
+        "ESKIZ_PASSWORD",
+        "ESKIZ_FROM",
+        "NEXT_PUBLIC_API_URL",
+        "NEXT_PUBLIC_SITE_URL",
+        "MAILPIT_SMTP_HOST",
+        "MAILPIT_SMTP_PORT",
+        "CORS_ORIGINS",
+        "LOG_LEVEL",
+        "SENTRY_DSN"
+      ],
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

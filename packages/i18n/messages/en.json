@@ -1,0 +1,110 @@
+{
+  "common": {
+    "appName": "Futzone",
+    "nav": {
+      "home": "Home",
+      "matches": "Matches",
+      "login": "Log in"
+    },
+    "footer": {
+      "rights": "All rights reserved."
+    },
+    "localeSwitcher": {
+      "label": "Change language",
+      "uz": "Uzbek (Latin)",
+      "uz-Cyrl": "Uzbek (Cyrillic)",
+      "ru": "Russian",
+      "en": "English"
+    }
+  },
+  "metadata": {
+    "title": "Futzone — Amateur football in Uzbekistan",
+    "description": "Find and join amateur football matches near you."
+  },
+  "home": {
+    "eyebrow": "Play together",
+    "title": "Your next football match starts here",
+    "description": "Find local matches, join reliable players and build your football reputation.",
+    "action": "Browse matches"
+  },
+  "status": {
+    "loading": "Loading…",
+    "errorTitle": "Something went wrong",
+    "errorDescription": "Please try again.",
+    "retry": "Try again",
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "The page you requested does not exist.",
+    "goneTitle": "Match removed from the archive",
+    "goneDescription": "This finished match has passed its retention period.",
+    "backHome": "Return home"
+  },
+  "errors": {
+    "OVERLAPPING_MATCH": "You already have another match at this time.",
+    "REQUIREMENTS_NOT_MET": "You do not meet this match's participation requirements.",
+    "INVITATION_REQUIRED": "A valid invitation is required.",
+    "INVITATION_EXPIRED": "This invitation has expired.",
+    "INVITATION_CONSUMED": "This invitation has already been used.",
+    "MATCH_FULL": "This match is full.",
+    "ALREADY_JOINED": "You have already joined this match.",
+    "NOT_PARTICIPANT": "You are not a participant in this match.",
+    "RATING_WINDOW_CLOSED": "The rating window is closed.",
+    "ATTENDANCE_WINDOW_CLOSED": "The attendance window is closed.",
+    "DISPUTE_WINDOW_CLOSED": "The dispute window is closed.",
+    "DISPUTE_ALREADY_OPEN": "This attendance record is already disputed.",
+    "INVALID_STATE_TRANSITION": "This action is not available for the match right now.",
+    "OTP_EXPIRED": "The verification code has expired.",
+    "OTP_INVALID": "The verification code is incorrect.",
+    "OTP_ATTEMPTS_EXCEEDED": "Too many verification attempts.",
+    "OTP_RATE_LIMITED": "Too many code requests. Please wait and try again.",
+    "USERNAME_TAKEN": "This username is already taken.",
+    "USERNAME_CHANGE_TOO_SOON": "You cannot change your username again yet.",
+    "UNAUTHORIZED": "Please log in to continue.",
+    "FORBIDDEN": "You do not have permission to do this.",
+    "NOT_FOUND": "The requested item was not found.",
+    "VALIDATION_ERROR": "Please check the entered information.",
+    "USER_SUSPENDED": "This account is suspended.",
+    "USER_BANNED": "This account is banned.",
+    "SELF_RATING_FORBIDDEN": "You cannot rate yourself.",
+    "DUPLICATE_RATING": "You have already rated this player for this match.",
+    "DUPLICATE_REPORT": "You have already reported this rating. Moderators will review your report.",
+    "INTERNAL_ERROR": "An unexpected error occurred. Please try again."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications yet",
+    "markAllRead": "Mark all read",
+    "viewAll": "View all",
+    "bellAria": "Notifications",
+    "unreadAria": "{count} unread notifications",
+    "loadMore": "Load more",
+    "types": {
+      "JOIN_REQUEST_RECEIVED": "Someone asked to join your match",
+      "JOIN_APPROVED": "Your request to join was approved",
+      "JOIN_REJECTED": "Your request to join was declined",
+      "MATCH_INVITE": "You were invited to a match",
+      "WAITLIST_PROMOTED": "A spot opened up — confirm your place",
+      "MATCH_UPDATED": "A match you joined was updated",
+      "MATCH_CANCELLED": "A match you joined was cancelled",
+      "MATCH_REMINDER_24H": "Your match is tomorrow",
+      "MATCH_REMINDER_2H": "Your match starts soon",
+      "ATTENDANCE_MARKED": "Your attendance was recorded",
+      "ATTENDANCE_DISPUTE_RESOLVED": "Your attendance dispute was resolved",
+      "RATING_WINDOW_OPEN": "Rate the players from your match",
+      "NEW_RATING_RECEIVED": "You received a new rating",
+      "REPORT_RESOLVED": "Your report was reviewed",
+      "ACCOUNT_WARNING": "You received a warning from the moderators"
+    },
+    "push": {
+      "heading": "Push notifications",
+      "enable": "Enable push notifications",
+      "disable": "Turn off push notifications",
+      "enabled": "Push notifications are on",
+      "blocked": "Push is blocked in your browser settings",
+      "unsupported": "Your browser does not support push notifications",
+      "unavailable": "Push notifications are not available right now",
+      "preferencesHeading": "Notify me about",
+      "save": "Save preferences",
+      "saved": "Preferences saved"
+    }
+  }
+}

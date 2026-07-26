@@ -1,0 +1,146 @@
+name: futzone
+
+services:
+  postgres:
+    # Multi-arch (amd64 + arm64); postgis/postgis is amd64-only and causes flaky QEMU emulation on Apple Silicon.
+    image: imresamu/postgis:16-3.4
+    container_name: futzone-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-futzone}
+      POSTGRES_USER: ${POSTGRES_USER:-futzone}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-futzone_dev_password}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+    networks:
+      - futzone
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    container_name: futzone-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "${REDIS_PORT:-6380}:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - futzone
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  minio:
+    image: minio/minio:latest
+    container_name: futzone-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-futzone}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-futzone_dev_password}
+    ports:
+      - "${MINIO_API_PORT:-9000}:9000"
+      - "${MINIO_CONSOLE_PORT:-9001}:9001"
+    volumes:
+      - minio-data:/data
+    networks:
+      - futzone
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  minio-init:
+    image: minio/mc:latest
+    container_name: futzone-minio-init
+    restart: "no"
+    depends_on:
+      minio:
+        condition: service_healthy
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-futzone}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-futzone_dev_password}
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        mc alias set local http://minio:9000 "$${MINIO_ROOT_USER}" "$${MINIO_ROOT_PASSWORD}"
+        mc mb --ignore-existing local/futzone-avatars
+        mc mb --ignore-existing local/futzone-stadiums
+        mc anonymous set download local/futzone-avatars
+    networks:
+      - futzone
+    healthcheck:
+      test: ["CMD-SHELL", "mc ready local"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: futzone-mailpit
+    restart: unless-stopped
+    environment:
+      MP_DATABASE: /data/mailpit.db
+    ports:
+      - "${MAILPIT_SMTP_PORT:-1025}:1025"
+      - "${MAILPIT_UI_PORT:-8025}:8025"
+    volumes:
+      - mailpit-data:/data
+    networks:
+      - futzone
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8025/livez"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  mock-sms:
+    build:
+      context: ./mock-sms
+    container_name: futzone-mock-sms
+    restart: unless-stopped
+    ports:
+      - "${MOCK_SMS_PORT:-4010}:4010"
+    networks:
+      - futzone
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://localhost:4010/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+volumes:
+  postgres-data:
+    name: futzone-postgres-data
+  redis-data:
+    name: futzone-redis-data
+  minio-data:
+    name: futzone-minio-data
+  mailpit-data:
+    name: futzone-mailpit-data
+
+networks:
+  futzone:
+    name: futzone-network
+    driver: bridge

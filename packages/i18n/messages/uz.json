@@ -1,0 +1,110 @@
+{
+  "common": {
+    "appName": "Futzone",
+    "nav": {
+      "home": "Bosh sahifa",
+      "matches": "O‘yinlar",
+      "login": "Kirish"
+    },
+    "footer": {
+      "rights": "Barcha huquqlar himoyalangan."
+    },
+    "localeSwitcher": {
+      "label": "Tilni o‘zgartirish",
+      "uz": "O‘zbekcha (lotin)",
+      "uz-Cyrl": "O‘zbekcha (kirill)",
+      "ru": "Ruscha",
+      "en": "Inglizcha"
+    }
+  },
+  "metadata": {
+    "title": "Futzone — O‘zbekistondagi havaskor futbol",
+    "description": "Yaqin atrofdagi havaskor futbol o‘yinlarini toping va ularga qo‘shiling."
+  },
+  "home": {
+    "eyebrow": "Birga o‘ynaymiz",
+    "title": "Keyingi futbol o‘yiningiz shu yerdan boshlanadi",
+    "description": "Mahalliy o‘yinlarni toping, ishonchli futbolchilarga qo‘shiling va futbol obro‘yingizni oshiring.",
+    "action": "O‘yinlarni ko‘rish"
+  },
+  "status": {
+    "loading": "Yuklanmoqda…",
+    "errorTitle": "Xatolik yuz berdi",
+    "errorDescription": "Qayta urinib ko‘ring.",
+    "retry": "Qayta urinish",
+    "notFoundTitle": "Sahifa topilmadi",
+    "notFoundDescription": "Siz izlagan sahifa mavjud emas.",
+    "goneTitle": "O‘yin arxivdan o‘chirildi",
+    "goneDescription": "Bu yakunlangan o‘yinning saqlash muddati tugagan.",
+    "backHome": "Bosh sahifaga qaytish"
+  },
+  "errors": {
+    "OVERLAPPING_MATCH": "Bu vaqtda sizda boshqa o‘yin bor.",
+    "REQUIREMENTS_NOT_MET": "Siz bu o‘yinda qatnashish talablariga javob bermaysiz.",
+    "INVITATION_REQUIRED": "Amaldagi taklifnoma talab qilinadi.",
+    "INVITATION_EXPIRED": "Bu taklifnomaning muddati tugagan.",
+    "INVITATION_CONSUMED": "Bu taklifnoma allaqachon ishlatilgan.",
+    "MATCH_FULL": "Bu o‘yinda bo‘sh joy qolmagan.",
+    "ALREADY_JOINED": "Siz bu o‘yinga allaqachon qo‘shilgansiz.",
+    "NOT_PARTICIPANT": "Siz bu o‘yin ishtirokchisi emassiz.",
+    "RATING_WINDOW_CLOSED": "Baholash muddati tugagan.",
+    "ATTENDANCE_WINDOW_CLOSED": "Davomat belgilash muddati tugagan.",
+    "DISPUTE_WINDOW_CLOSED": "E'tiroz bildirish muddati tugagan.",
+    "DISPUTE_ALREADY_OPEN": "Bu davomat yozuviga e'tiroz allaqachon bildirilgan.",
+    "INVALID_STATE_TRANSITION": "Hozir bu amalni o‘yin uchun bajarib bo‘lmaydi.",
+    "OTP_EXPIRED": "Tasdiqlash kodining muddati tugagan.",
+    "OTP_INVALID": "Tasdiqlash kodi noto‘g‘ri.",
+    "OTP_ATTEMPTS_EXCEEDED": "Tasdiqlash urinishlari soni oshib ketdi.",
+    "OTP_RATE_LIMITED": "Kod juda ko‘p so‘raldi. Biroz kutib, qayta urinib ko‘ring.",
+    "USERNAME_TAKEN": "Bu foydalanuvchi nomi band.",
+    "USERNAME_CHANGE_TOO_SOON": "Foydalanuvchi nomini hozircha yana o‘zgartira olmaysiz.",
+    "UNAUTHORIZED": "Davom etish uchun tizimga kiring.",
+    "FORBIDDEN": "Bu amalni bajarishga ruxsatingiz yo‘q.",
+    "NOT_FOUND": "So‘ralgan ma’lumot topilmadi.",
+    "VALIDATION_ERROR": "Kiritilgan ma’lumotlarni tekshiring.",
+    "USER_SUSPENDED": "Bu hisob vaqtincha to‘xtatilgan.",
+    "USER_BANNED": "Bu hisob bloklangan.",
+    "SELF_RATING_FORBIDDEN": "O‘zingizni baholay olmaysiz.",
+    "DUPLICATE_RATING": "Bu o‘yinda ushbu futbolchini allaqachon baholagansiz.",
+    "DUPLICATE_REPORT": "Bu baho haqida allaqachon xabar bergansiz. Moderatorlar uni ko‘rib chiqadi.",
+    "INTERNAL_ERROR": "Kutilmagan xatolik yuz berdi. Qayta urinib ko‘ring."
+  },
+  "notifications": {
+    "title": "Bildirishnomalar",
+    "empty": "Hozircha bildirishnomalar yo'q",
+    "markAllRead": "Hammasini o'qilgan deb belgilash",
+    "viewAll": "Barchasini ko'rish",
+    "bellAria": "Bildirishnomalar",
+    "unreadAria": "{count} ta o'qilmagan bildirishnoma",
+    "loadMore": "Ko'proq yuklash",
+    "types": {
+      "JOIN_REQUEST_RECEIVED": "Kimdir sizning o'yiningizga qo'shilmoqchi",
+      "JOIN_APPROVED": "Qo'shilish so'rovingiz tasdiqlandi",
+      "JOIN_REJECTED": "Qo'shilish so'rovingiz rad etildi",
+      "MATCH_INVITE": "Siz o'yinga taklif qilindingiz",
+      "WAITLIST_PROMOTED": "Joy bo'shadi — ishtirokingizni tasdiqlang",
+      "MATCH_UPDATED": "Siz qo'shilgan o'yin yangilandi",
+      "MATCH_CANCELLED": "Siz qo'shilgan o'yin bekor qilindi",
+      "MATCH_REMINDER_24H": "O'yiningiz ertaga bo'ladi",
+      "MATCH_REMINDER_2H": "O'yiningiz tez orada boshlanadi",
+      "ATTENDANCE_MARKED": "Sizning davomatingiz belgilandi",
+      "ATTENDANCE_DISPUTE_RESOLVED": "Davomat bo'yicha e'tirozingiz hal qilindi",
+      "RATING_WINDOW_OPEN": "O'yiningizdagi o'yinchilarni baholang",
+      "NEW_RATING_RECEIVED": "Siz yangi baho oldingiz",
+      "REPORT_RESOLVED": "Shikoyatingiz ko'rib chiqildi",
+      "ACCOUNT_WARNING": "Siz moderatorlardan ogohlantirish oldingiz"
+    },
+    "push": {
+      "heading": "Push bildirishnomalar",
+      "enable": "Push bildirishnomalarni yoqish",
+      "disable": "Push bildirishnomalarni o'chirish",
+      "enabled": "Push bildirishnomalar yoqilgan",
+      "blocked": "Push brauzer sozlamalarida bloklangan",
+      "unsupported": "Brauzeringiz push bildirishnomalarni qo'llab-quvvatlamaydi",
+      "unavailable": "Push bildirishnomalar hozircha mavjud emas",
+      "preferencesHeading": "Meni quyidagilar haqida ogohlantirish",
+      "save": "Sozlamalarni saqlash",
+      "saved": "Sozlamalar saqlandi"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TURBO_REMOTE_ONLY: "false"
+  TURBO_REMOTE_CACHE_SIGNATURE_KEY: ""
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @futzone/api run prisma:generate
+      - name: Guard strict lint scripts
+        run: node -e "const fs=require('fs');const files=['apps/api/package.json','apps/web/package.json','apps/admin/package.json','packages/contracts/package.json','packages/i18n/package.json','packages/ui/package.json'];for(const file of files){const lint=JSON.parse(fs.readFileSync(file)).scripts?.lint;if(lint&&!lint.includes('--max-warnings 0'))throw new Error(file+' lint must include --max-warnings 0')}"
+      - run: pnpm run lint
+      - run: pnpm run typecheck
+      - run: pnpm run test
+      - run: pnpm run build
+
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: imresamu/postgis:16-3.4
+        env:
+          POSTGRES_DB: futzone
+          POSTGRES_USER: futzone
+          POSTGRES_PASSWORD: futzone_ci_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U futzone -d futzone"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://futzone:futzone_ci_password@localhost:5432/futzone_test
+      TEST_DATABASE_URL: postgresql://futzone:futzone_ci_password@localhost:5432/futzone_test
+      REDIS_URL: redis://localhost:6379
+      NODE_ENV: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @futzone/api run prisma:generate
+      - run: pnpm exec turbo run build --filter=@futzone/api...
+      - name: Create test database
+        env:
+          PGPASSWORD: futzone_ci_password
+        run: psql --host localhost --username futzone --dbname futzone --command 'CREATE DATABASE futzone_test'
+      - name: Apply test migrations
+        run: pnpm --filter @futzone/api run db:migrate
+      - run: pnpm --filter @futzone/api run test:e2e

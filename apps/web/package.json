@@ -1,0 +1,33 @@
+{
+  "name": "@futzone/web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p ${WEB_PORT:-3000}",
+    "build": "next build",
+    "start": "next start -p ${WEB_PORT:-3000}",
+    "lint": "eslint src next.config.ts --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@futzone/contracts": "workspace:*",
+    "@futzone/i18n": "workspace:*",
+    "@futzone/ui": "workspace:*",
+    "next": "^15.5.2",
+    "next-intl": "^4.3.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@futzone/config": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.12",
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "eslint": "^9.32.0",
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

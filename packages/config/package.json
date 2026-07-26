@@ -1,0 +1,24 @@
+{
+  "name": "@futzone/config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./eslint/base": "./eslint/base.js",
+    "./eslint/next": "./eslint/next.js",
+    "./eslint/nest": "./eslint/nest.js",
+    "./tsconfig/base.json": "./tsconfig/base.json",
+    "./tsconfig/nextjs.json": "./tsconfig/nextjs.json",
+    "./tsconfig/nestjs.json": "./tsconfig/nestjs.json",
+    "./tsconfig/library.json": "./tsconfig/library.json",
+    "./tailwind/theme.css": "./tailwind/theme.css"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.32.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.3.0"
+  }
+}

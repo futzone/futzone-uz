@@ -1,0 +1,24 @@
+{
+  "name": "futzone",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "test": "turbo test",
+    "db:migrate": "pnpm --filter @futzone/api run db:migrate",
+    "db:seed": "pnpm --filter @futzone/api run db:seed",
+    "db:reset": "pnpm --filter @futzone/api run db:reset",
+    "docker:up": "docker compose -f infrastructure/docker-compose.yml up -d --build",
+    "docker:down": "docker compose -f infrastructure/docker-compose.yml down",
+    "docker:reset": "docker compose -f infrastructure/docker-compose.yml down --volumes --remove-orphans",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.5"
+  }
+}
